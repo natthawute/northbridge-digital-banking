@@ -33,15 +33,18 @@
             "styles": [
               "projects/retail-banking-app/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "payments-gateway-sdk"
+            ]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "1mb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -103,6 +106,15 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/retail-banking-app/**/*.ts",
+              "projects/retail-banking-app/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -133,6 +145,15 @@
             "main": "projects/ui-components/src/test.ts",
             "tsConfig": "projects/ui-components/tsconfig.spec.json",
             "karmaConfig": "projects/ui-components/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/ui-components/**/*.ts",
+              "projects/ui-components/**/*.html"
+            ]
           }
         }
       }

@@ -18,7 +18,7 @@ describe('DashboardComponent', () => {
     fixture = TestBed.createComponent(DashboardComponent);
     fixture.detectChanges();
     httpMock.expectOne('assets/mock-transactions.json').flush([
-      { date: '2024-05-28', merchant: 'Harborview Grocers', category: 'Groceries', amount: '-$86.42' }
+      { date: '2024-05-28', merchant: 'Harborview Grocers', category: 'Groceries', amount: '-$86.42', accountType: 'Checking' }
     ]);
     fixture.detectChanges();
   });

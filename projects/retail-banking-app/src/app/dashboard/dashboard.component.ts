@@ -43,8 +43,9 @@ export class DashboardComponent implements OnInit {
         !search ||
         tx.merchant.toLowerCase().includes(search) ||
         tx.category.toLowerCase().includes(search);
+      const matchesAccountType = !criteria.accountType || tx.accountType === criteria.accountType;
       const matchesDate = !criteria.date || tx.date === criteria.date;
-      return matchesSearch && matchesDate;
+      return matchesSearch && matchesAccountType && matchesDate;
     });
   }
 }

@@ -17,7 +17,7 @@ describe('PaymentsGatewayService', () => {
 
   it('should fetch transactions through the payments gateway', () => {
     const mock: Transaction[] = [
-      { date: '2024-05-28', merchant: 'Harborview Grocers', category: 'Groceries', amount: '-$86.42' }
+      { date: '2024-05-28', merchant: 'Harborview Grocers', category: 'Groceries', amount: '-$86.42', accountType: 'Checking' }
     ];
 
     let received: Transaction[] | undefined;

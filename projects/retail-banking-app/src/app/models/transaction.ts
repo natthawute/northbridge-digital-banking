@@ -3,6 +3,7 @@ export interface Transaction {
   merchant: string;
   category: string;
   amount: string;
+  accountType: string;
 }
 
 export interface AccountSummary {

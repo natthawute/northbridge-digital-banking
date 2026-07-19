@@ -63,6 +63,19 @@ Angular upgrade is a separate effort; the library keeps `^N` peer ranges per hop
 portal must upgrade in lockstep or continue using the last compatible tarball. Verified per
 hop by installing the freshly packed tarball and running its build + tests.
 
+Findings from the v15 hop verification:
+
+- A library built with Angular 15 is **not consumable by the portal while it stays on
+  Angular 14** (`TS2707` on the emitted `ɵɵComponentDeclaration` typings, plus peer-dep
+  conflict). The portal must upgrade to Angular 15 in lockstep or keep the last v14 tarball.
+- Verified with the portal checkout locally upgraded to Angular 15: build and all 5 specs
+  pass against the repacked library. The only portal-side change needed besides the upgrade
+  itself is the legacy → MDC class rename in one spec (`tr.mat-row` → `tr.mat-mdc-row`).
+- The original v14 tarball shipped `styles/_keystone-theme.scss`, but the workspace's
+  `ng-package.json` never copied it (the vendored tarball had been packed by hand). Fixed by
+  adding an `assets` rule and a `./styles/*` subpath export so `npm pack` of `dist` is
+  self-sufficient.
+
 ## Baseline (recorded before any upgrade command)
 
 - `npm run build` — green on `main` (both projects)

@@ -8,5 +8,11 @@
   },
   "dependencies": {
     "tslib": "^2.3.0"
+  },
+  "exports": {
+    "./styles/*": {
+      "sass": "./styles/*",
+      "default": "./styles/*"
+    }
   }
 }

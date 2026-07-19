@@ -2,11 +2,17 @@
   "name": "@northbridge/ui-components",
   "version": "1.0.0",
   "peerDependencies": {
-    "@angular/common": "^14.2.0",
-    "@angular/core": "^14.2.0",
-    "@angular/material": "^14.2.0"
+    "@angular/common": "^15.0.0",
+    "@angular/core": "^15.0.0",
+    "@angular/material": "^15.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
+  },
+  "exports": {
+    "./styles/*": {
+      "sass": "./styles/*",
+      "default": "./styles/*"
+    }
   }
 }

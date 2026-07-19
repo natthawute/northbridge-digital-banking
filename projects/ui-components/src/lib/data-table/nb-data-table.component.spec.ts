@@ -28,7 +28,7 @@ describe('NbDataTableComponent', () => {
     ];
     fixture.detectChanges();
 
-    const rows = fixture.nativeElement.querySelectorAll('tr.mat-row');
+    const rows = fixture.nativeElement.querySelectorAll('tr.mat-mdc-row');
     expect(rows.length).toBe(3);
   });
 });

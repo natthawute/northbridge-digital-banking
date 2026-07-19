@@ -1,6 +1,7 @@
 // Keystone Design System — Northbridge Material theme (navy/gold)
 @use '@angular/material' as mat;
 
+@include mat.all-component-typographies();
 @include mat.core();
 
 $keystone-navy: (
@@ -89,24 +90,29 @@ $keystone-theme: mat.define-light-theme(
 // Keystone overrides on Material internals
 // ---------------------------------------------------------------------------
 
-.mat-form-field-flex {
+// MDC form fields use a filled text-field wrapper instead of the legacy flex
+// container, and a line ripple instead of the legacy underline.
+.mat-mdc-form-field .mat-mdc-text-field-wrapper {
   background: #e4e9f2;
   border: 2px solid #183a7e;
   border-radius: 6px 6px 0 0;
-  padding: 6px 12px 0 12px !important;
+  padding: 6px 12px 0 12px;
 }
 
-.mat-form-field-underline {
+.mat-mdc-form-field .mdc-line-ripple {
   display: none;
 }
 
-.mat-select-value {
+.mat-mdc-select-value {
   font-family: Georgia, 'Times New Roman', serif;
   font-weight: 700;
   color: #0b2262;
 }
 
-.mat-header-cell {
+// Material's own `.mat-mdc-table .mat-mdc-header-cell { background: inherit }`
+// rule is injected after global styles, so the header override needs the extra
+// row class to outrank it.
+.mat-mdc-table .mat-mdc-header-row .mat-mdc-header-cell {
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 13px;
   font-weight: 700;
@@ -114,18 +120,25 @@ $keystone-theme: mat.define-light-theme(
   text-transform: uppercase;
   color: #fdf6e3;
   background: #0b2262;
+}
+
+// MDC drives row height from the tr, not the cells.
+.mat-mdc-table .mat-mdc-header-row {
   height: 48px;
 }
 
-.mat-cell {
+.mat-mdc-table .mat-mdc-row {
+  height: 44px;
+}
+
+.mat-mdc-table .mat-mdc-cell {
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 14px;
   color: #143274;
   border-bottom: 1px solid #efb316 !important;
-  height: 44px;
 }
 
-.mat-raised-button {
+.mat-mdc-raised-button {
   border-radius: 20px;
   height: 40px;
   background: #efb316;
@@ -133,12 +146,16 @@ $keystone-theme: mat.define-light-theme(
   border: 2px solid #0b2262;
 }
 
-.nb-table-density--compact {
-  .mat-header-cell {
+// The density class may sit on the table itself or on a wrapping component
+// (e.g. nb-data-table); both selectors carry enough weight to beat the
+// row-height rules above.
+.nb-table-density--compact .mat-mdc-table,
+.mat-mdc-table.nb-table-density--compact {
+  .mat-mdc-header-row {
     height: 36px;
   }
 
-  .mat-cell {
+  .mat-mdc-row {
     height: 28px;
   }
 }

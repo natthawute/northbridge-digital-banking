@@ -1,0 +1,19 @@
+<header class="dashboard__header">
+  <h1>Accounts Dashboard</h1>
+  <p>Welcome back to Northbridge Digital Banking</p>
+</header>
+
+<section class="dashboard__cards">
+  <div class="account-card" *ngFor="let account of accounts">
+    <span class="account-card__type">{{ account.type }}</span>
+    <h2 class="account-card__name">{{ account.name }}</h2>
+    <span class="account-card__number">{{ account.number }}</span>
+    <span class="account-card__balance">{{ account.balance }}</span>
+  </div>
+</section>
+
+<section class="dashboard__transactions">
+  <h2>Recent Transactions</h2>
+  <nb-filter-bar [accountTypes]="accountTypes" (filterChange)="onFilterChange($event)"></nb-filter-bar>
+  <nb-data-table [columns]="columns" [dataSource]="filteredTransactions"></nb-data-table>
+</section>

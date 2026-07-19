@@ -1,0 +1,68 @@
+:host {
+  display: block;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.dashboard__header {
+  h1 {
+    margin: 0;
+    color: #0b2262;
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+
+  p {
+    margin: 4px 0 24px;
+    color: #4265a2;
+  }
+}
+
+.dashboard__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.account-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px;
+  border-radius: 8px;
+  background: #0b2262;
+  color: #fdf6e3;
+  border-bottom: 4px solid #efb316;
+}
+
+.account-card__type {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #f4ca5c;
+}
+
+.account-card__name {
+  margin: 0;
+  font-size: 18px;
+}
+
+.account-card__number {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.account-card__balance {
+  margin-top: 8px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #efb316;
+}
+
+.dashboard__transactions {
+  h2 {
+    color: #0b2262;
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+}

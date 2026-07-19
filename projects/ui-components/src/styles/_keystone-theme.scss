@@ -109,7 +109,10 @@ $keystone-theme: mat.define-light-theme(
   color: #0b2262;
 }
 
-.mat-mdc-header-cell {
+// Material's own `.mat-mdc-table .mat-mdc-header-cell { background: inherit }`
+// rule is injected after global styles, so the header override needs the extra
+// row class to outrank it.
+.mat-mdc-table .mat-mdc-header-row .mat-mdc-header-cell {
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 13px;
   font-weight: 700;
@@ -120,7 +123,7 @@ $keystone-theme: mat.define-light-theme(
   height: 48px;
 }
 
-.mat-mdc-cell {
+.mat-mdc-table .mat-mdc-cell {
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 14px;
   color: #143274;

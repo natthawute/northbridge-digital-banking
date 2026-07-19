@@ -1,10 +1,25 @@
 .nb-filter-bar {
   display: flex;
   gap: 16px;
-  align-items: baseline;
+  align-items: flex-start;
   flex-wrap: wrap;
 }
 
 .nb-filter-bar__field {
   min-width: 200px;
+
+  input.mat-input-element {
+    height: 34px;
+    box-sizing: border-box;
+  }
+
+  .mat-select {
+    display: flex;
+    align-items: center;
+    height: 34px;
+
+    ::ng-deep .mat-select-trigger {
+      width: 100%;
+    }
+  }
 }

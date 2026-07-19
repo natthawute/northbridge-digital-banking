@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test (headless)
+        run: |
+          npx ng test ui-components --watch=false --browsers=ChromeHeadless
+          npx ng test retail-banking-app --watch=false --browsers=ChromeHeadless
+
+      - name: Build library
+        run: npx ng build ui-components --configuration production
+
+      - name: Build application
+        run: npx ng build retail-banking-app --configuration production

@@ -8,9 +8,9 @@
 //  If you specify typography styles for the components you use elsewhere, you should delete this line.
 //  If you don't need the default component typographies but still want the hierarchy styles,
 //  you can delete this line and instead use:
-//    `@include mat.legacy-typography-hierarchy(mat.define-legacy-typography-config());`
-@include mat.all-legacy-component-typographies();
-@include mat.legacy-core();
+//    `@include mat.legacy-typography-hierarchy(mat.define-typography-config());`
+@include mat.all-component-typographies();
+@include mat.core();
 
 $keystone-navy: (
   50: #e4e9f2,
@@ -92,12 +92,13 @@ $keystone-theme: mat.define-light-theme(
   )
 );
 
-@include mat.all-legacy-component-themes($keystone-theme);
+@include mat.all-component-themes($keystone-theme);
 
 // ---------------------------------------------------------------------------
 // Keystone overrides on Material internals
 // ---------------------------------------------------------------------------
 
+/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
 .mat-form-field-flex {
   background: #e4e9f2;
   border: 2px solid #183a7e;
@@ -105,17 +106,19 @@ $keystone-theme: mat.define-light-theme(
   padding: 6px 12px 0 12px !important;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
 .mat-form-field-underline {
   display: none;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of select that may no longer apply for the MDC version.*/
 .mat-select-value {
   font-family: Georgia, 'Times New Roman', serif;
   font-weight: 700;
   color: #0b2262;
 }
 
-.mat-header-cell {
+.mat-mdc-header-cell {
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 13px;
   font-weight: 700;
@@ -126,7 +129,7 @@ $keystone-theme: mat.define-light-theme(
   height: 48px;
 }
 
-.mat-cell {
+.mat-mdc-cell {
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 14px;
   color: #143274;
@@ -134,7 +137,7 @@ $keystone-theme: mat.define-light-theme(
   height: 44px;
 }
 
-.mat-raised-button {
+.mat-mdc-raised-button {
   border-radius: 20px;
   height: 40px;
   background: #efb316;
@@ -143,11 +146,11 @@ $keystone-theme: mat.define-light-theme(
 }
 
 .nb-table-density--compact {
-  .mat-header-cell {
+  .mat-mdc-header-cell {
     height: 36px;
   }
 
-  .mat-cell {
+  .mat-mdc-cell {
     height: 28px;
   }
 }

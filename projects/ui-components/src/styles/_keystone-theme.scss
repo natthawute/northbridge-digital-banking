@@ -118,7 +118,14 @@ $keystone-theme: mat.define-light-theme(
   color: #0b2262;
 }
 
-.mat-mdc-header-cell {
+// MDC table cells inherit the row background, so paint the header row itself
+// and raise specificity above the .mat-mdc-table defaults.
+.mat-mdc-table .mat-mdc-header-row {
+  background: #0b2262;
+  height: 48px;
+}
+
+.mat-mdc-table .mat-mdc-header-cell {
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 13px;
   font-weight: 700;
@@ -126,15 +133,17 @@ $keystone-theme: mat.define-light-theme(
   text-transform: uppercase;
   color: #fdf6e3;
   background: #0b2262;
-  height: 48px;
 }
 
-.mat-mdc-cell {
+.mat-mdc-table .mat-mdc-row {
+  height: 44px;
+}
+
+.mat-mdc-table .mat-mdc-cell {
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 14px;
   color: #143274;
   border-bottom: 1px solid #efb316 !important;
-  height: 44px;
 }
 
 .mat-mdc-raised-button {
@@ -146,11 +155,11 @@ $keystone-theme: mat.define-light-theme(
 }
 
 .nb-table-density--compact {
-  .mat-mdc-header-cell {
+  .mat-mdc-header-row {
     height: 36px;
   }
 
-  .mat-mdc-cell {
+  .mat-mdc-row {
     height: 28px;
   }
 }

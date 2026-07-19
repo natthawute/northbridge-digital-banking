@@ -23,14 +23,14 @@ describe('NbFilterBarComponent', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('should render legacy form field internals (.mat-form-field-flex)', () => {
-    const flex = fixture.nativeElement.querySelector('.mat-form-field-flex');
-    expect(flex).withContext('expected legacy .mat-form-field-flex element').not.toBeNull();
+  it('should render MDC form field internals (.mat-mdc-form-field-flex)', () => {
+    const flex = fixture.nativeElement.querySelector('.mat-mdc-form-field-flex');
+    expect(flex).withContext('expected MDC .mat-mdc-form-field-flex element').not.toBeNull();
   });
 
-  it('should render the account-type select with the legacy .mat-select class', () => {
-    const select = fixture.nativeElement.querySelector('.mat-select');
-    expect(select).withContext('expected legacy .mat-select element').not.toBeNull();
+  it('should render the account-type select with the .mat-mdc-select class', () => {
+    const select = fixture.nativeElement.querySelector('.mat-mdc-select');
+    expect(select).withContext('expected MDC .mat-mdc-select element').not.toBeNull();
   });
 
   it('should emit filter criteria when the search value changes', () => {

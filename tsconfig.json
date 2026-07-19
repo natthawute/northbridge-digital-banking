@@ -25,6 +25,9 @@
     "paths": {
       "@northbridge/ui-components": [
         "projects/ui-components/src/public-api.ts"
+      ],
+      "payments-gateway-sdk": [
+        "vendor/payments-gateway-sdk/src/index.ts"
       ]
     }
   },

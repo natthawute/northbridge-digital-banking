@@ -33,10 +33,7 @@
             "styles": [
               "projects/retail-banking-app/src/styles.scss"
             ],
-            "scripts": [],
-            "allowedCommonJsDependencies": [
-              "payments-gateway-sdk"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {

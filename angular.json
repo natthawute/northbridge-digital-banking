@@ -6,5 +6,136 @@
   },
   "newProjectRoot": "projects",
   "projects": {
+    "retail-banking-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/retail-banking-app",
+      "sourceRoot": "projects/retail-banking-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/retail-banking-app",
+            "index": "projects/retail-banking-app/src/index.html",
+            "main": "projects/retail-banking-app/src/main.ts",
+            "polyfills": "projects/retail-banking-app/src/polyfills.ts",
+            "tsConfig": "projects/retail-banking-app/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/retail-banking-app/src/favicon.ico",
+              "projects/retail-banking-app/src/assets"
+            ],
+            "styles": [
+              "projects/retail-banking-app/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/retail-banking-app/src/environments/environment.ts",
+                  "with": "projects/retail-banking-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "retail-banking-app:build:production"
+            },
+            "development": {
+              "browserTarget": "retail-banking-app:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "retail-banking-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/retail-banking-app/src/test.ts",
+            "polyfills": "projects/retail-banking-app/src/polyfills.ts",
+            "tsConfig": "projects/retail-banking-app/tsconfig.spec.json",
+            "karmaConfig": "projects/retail-banking-app/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/retail-banking-app/src/favicon.ico",
+              "projects/retail-banking-app/src/assets"
+            ],
+            "styles": [
+              "projects/retail-banking-app/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "ui-components": {
+      "projectType": "library",
+      "root": "projects/ui-components",
+      "sourceRoot": "projects/ui-components/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ui-components/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ui-components/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ui-components/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ui-components/src/test.ts",
+            "tsConfig": "projects/ui-components/tsconfig.spec.json",
+            "karmaConfig": "projects/ui-components/karma.conf.js"
+          }
+        }
+      }
+    }
   }
 }

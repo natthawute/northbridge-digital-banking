@@ -1,23 +1,29 @@
 ---
 name: testing-accounts-dashboard
-description: Test the Northbridge retail-banking Accounts Dashboard end-to-end (balance cards, filter bar, transactions table). Use when verifying UI, filtering, or theming changes in this Angular 14 workspace.
+description: Test the Northbridge retail-banking Accounts Dashboard end-to-end (balance cards, filter bar, transactions table). Use when verifying UI, filtering, or theming changes in this Angular workspace (Angular 15+ after the MDC migration).
 ---
 
 # Testing the Accounts Dashboard
 
 ## Environment
-- Requires Node 16: `source ~/.nvm/nvm.sh && nvm use 16` (see `.nvmrc`). Newer Node versions may fail with Angular 14 tooling.
-- Install with `npm ci`. If library type-check errors mention `Symbol.dispose` in `@types/node`, ensure `@types/node` stays pinned to 16.x (TS 4.7 can't parse newer typings).
+- Requires Node 16: `source ~/.nvm/nvm.sh && nvm use 16` (see `.nvmrc`). Newer Node versions may fail with the Angular tooling pinned in package.json.
+- Install with `npm ci`. If library type-check errors mention `Symbol.dispose` in `@types/node`, ensure `@types/node` stays pinned to 16.x (older TS can't parse newer typings).
 
 ## Run the app
 - `npx ng serve --port 4200`, then open http://localhost:4200/dashboard (root redirects there).
 - Note: deep links via curl return "Cannot GET /dashboard" without an `Accept: text/html` header — use the browser, or curl `/` instead.
 
 ## Unit tests / lint / build
-- Headless Chrome may fail to launch in sandboxed VMs. Workaround: create a wrapper script that adds `--no-sandbox` and export it as `CHROME_BIN`:
+- Headless Chrome may fail to launch in sandboxed VMs: `~/.local/bin/google-chrome` may be a CDP proxy wrapper that Karma cannot launch. First try `export CHROME_BIN=/usr/bin/google-chrome-stable`; if that binary is missing, create a `--no-sandbox` wrapper and export it as `CHROME_BIN`:
   `printf '#!/bin/bash\nexec /usr/bin/google-chrome --no-sandbox --disable-gpu --disable-dev-shm-usage "$@"\n' > ~/bin/chrome-no-sandbox && chmod +x ~/bin/chrome-no-sandbox && export CHROME_BIN=~/bin/chrome-no-sandbox`
 - `npm test` runs both projects headless once; `npm run lint`; `npm run build` builds library then app.
-- Two "canary" tests intentionally assert legacy Material internals (`.mat-form-field-flex`, `.mat-select`). They are EXPECTED to fail after a Material 15+/MDC migration — that is by design for the migration demo; do not "fix" them.
+- The filter-bar "canary" tests assert Material form-field/select internals. Since the Angular 15 MDC migration they target the MDC classes (`.mat-mdc-form-field-flex`, `.mat-mdc-select`); if a future Material upgrade changes the DOM again, update the selectors rather than deleting the tests.
+
+## Material MDC theming pitfalls (Angular 15+)
+- A green build/tests do NOT prove theming is intact — always screenshot /dashboard and compare against baselines. Known regression pattern: the table header can silently lose its navy background because MDC cells inherit the row background; theme both `.mat-mdc-table .mat-mdc-header-row` and `.mat-mdc-header-cell` with sufficient specificity.
+- Legacy selectors (`.mat-form-field-flex`, `.mat-select-value`, `.mat-header-cell`, `.mat-row`, etc.) map to `.mat-mdc-*` equivalents; the form-field underline has no 1:1 class — hide `.mdc-line-ripple` instead.
+- Downstream consumers (northbridge-rewards-portal) import `@northbridge/ui-components/styles/keystone-theme` from the packed tarball; `projects/ui-components/ng-package.json` must keep the SCSS `assets` entry or the portal styles build breaks.
+- Specs asserting table rows should query `tr.mat-mdc-row` (portal specs may still use legacy `tr.mat-row` until it migrates).
 
 ## Filter expectations (mock data in projects/retail-banking-app/src/assets/mock-transactions.json)
 - 15 transactions total. Account type: Checking → 7 rows, Savings → 2 rows, Credit → 6 rows.

@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
   ssoTokenEndpoint: 'https://sso.northbridge.example/token',
-  fakeAuthToken: 'nb-sso-dev-token-2f8c1a'
+  fakeAuthToken: 'fake-dev-token-not-a-real-secret'
 };

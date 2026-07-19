@@ -1,0 +1,11 @@
+{
+  "name": "payments-gateway-sdk",
+  "version": "2.4.1",
+  "description": "Northbridge payments gateway client SDK",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "peerDependencies": {
+    "@angular/core": "^14.0.0",
+    "rxjs": "~7.5.0"
+  }
+}

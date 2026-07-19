@@ -1,0 +1,19 @@
+<div class="nb-filter-bar">
+  <mat-form-field appearance="legacy" class="nb-filter-bar__field">
+    <mat-label>Search transactions</mat-label>
+    <input matInput type="text" [(ngModel)]="search" (ngModelChange)="emitChange()" />
+  </mat-form-field>
+
+  <mat-form-field appearance="legacy" class="nb-filter-bar__field">
+    <mat-label>Account type</mat-label>
+    <mat-select [(ngModel)]="accountType" (ngModelChange)="emitChange()">
+      <mat-option value="">All accounts</mat-option>
+      <mat-option *ngFor="let type of accountTypes" [value]="type">{{ type }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="legacy" class="nb-filter-bar__field">
+    <mat-label>Date</mat-label>
+    <input matInput type="date" [(ngModel)]="date" (ngModelChange)="emitChange()" />
+  </mat-form-field>
+</div>

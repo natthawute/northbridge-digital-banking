@@ -1,0 +1,10 @@
+.nb-filter-bar {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.nb-filter-bar__field {
+  min-width: 200px;
+}

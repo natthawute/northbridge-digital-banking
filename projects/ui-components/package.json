@@ -1,9 +1,10 @@
 {
-  "name": "ui-components",
-  "version": "0.0.1",
+  "name": "@northbridge/ui-components",
+  "version": "1.0.0",
   "peerDependencies": {
     "@angular/common": "^14.2.0",
-    "@angular/core": "^14.2.0"
+    "@angular/core": "^14.2.0",
+    "@angular/material": "^14.2.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

@@ -1,0 +1,15 @@
+<table mat-table [dataSource]="rows" class="nb-data-table">
+  <ng-container *ngFor="let col of columns" [matColumnDef]="col.key">
+    <th mat-header-cell *matHeaderCellDef>{{ col.header }}</th>
+    <td mat-cell *matCellDef="let row">{{ cellValue(row, col.key) }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnKeys"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnKeys"></tr>
+</table>
+
+<div class="nb-data-table__pagination" *ngIf="legacyPagination">
+  <button mat-raised-button [disabled]="pageIndex === 0" (click)="previousPage()">Previous</button>
+  <span class="nb-data-table__page-label">Page {{ pageIndex + 1 }}</span>
+  <button mat-raised-button [disabled]="!hasNextPage" (click)="nextPage()">Next</button>
+</div>

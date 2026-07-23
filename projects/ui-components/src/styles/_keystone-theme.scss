@@ -1,14 +1,6 @@
 // Keystone Design System — Northbridge Material theme (navy/gold)
 @use '@angular/material' as mat;
 
-// TODO(v15): As of v15 mat.legacy-core no longer includes default typography styles.
-//  The following line adds:
-//    1. Default typography styles for all components
-//    2. Styles for typography hierarchy classes (e.g. .mat-headline-1)
-//  If you specify typography styles for the components you use elsewhere, you should delete this line.
-//  If you don't need the default component typographies but still want the hierarchy styles,
-//  you can delete this line and instead use:
-//    `@include mat.legacy-typography-hierarchy(mat.define-typography-config());`
 @include mat.all-component-typographies();
 @include mat.core();
 
@@ -98,27 +90,29 @@ $keystone-theme: mat.define-light-theme(
 // Keystone overrides on Material internals
 // ---------------------------------------------------------------------------
 
-/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
-.mat-form-field-flex {
+.mat-mdc-form-field .mat-mdc-text-field-wrapper {
   background: #e4e9f2;
   border: 2px solid #183a7e;
   border-radius: 6px 6px 0 0;
-  padding: 6px 12px 0 12px !important;
+  padding: 6px 12px 0 12px;
 }
 
-/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
-.mat-form-field-underline {
+// The legacy form-field underline has no MDC equivalent; hide the MDC
+// line-ripple to keep the Keystone borderless-bottom look.
+.mat-mdc-form-field .mdc-line-ripple {
   display: none;
 }
 
-/* TODO(mdc-migration): The following rule targets internal classes of select that may no longer apply for the MDC version.*/
-.mat-select-value {
+.mat-mdc-select-value {
   font-family: Georgia, 'Times New Roman', serif;
   font-weight: 700;
   color: #0b2262;
 }
 
-.mat-mdc-header-cell {
+// The element+class selectors are required: MDC table structural styles are
+// injected at runtime after global styles and reset cell backgrounds
+// (`background: inherit`), so a plain class selector loses the cascade.
+.mat-mdc-table th.mat-mdc-header-cell {
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 13px;
   font-weight: 700;
@@ -129,7 +123,7 @@ $keystone-theme: mat.define-light-theme(
   height: 48px;
 }
 
-.mat-mdc-cell {
+.mat-mdc-table td.mat-mdc-cell {
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 14px;
   color: #143274;

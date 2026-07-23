@@ -1,6 +1,7 @@
 // Keystone Design System — Northbridge Material theme (navy/gold)
 @use '@angular/material' as mat;
 
+@include mat.all-component-typographies();
 @include mat.core();
 
 $keystone-navy: (
@@ -89,24 +90,29 @@ $keystone-theme: mat.define-light-theme(
 // Keystone overrides on Material internals
 // ---------------------------------------------------------------------------
 
-.mat-form-field-flex {
+.mat-mdc-form-field .mat-mdc-text-field-wrapper {
   background: #e4e9f2;
   border: 2px solid #183a7e;
   border-radius: 6px 6px 0 0;
-  padding: 6px 12px 0 12px !important;
+  padding: 6px 12px 0 12px;
 }
 
-.mat-form-field-underline {
+// The legacy form-field underline has no MDC equivalent; hide the MDC
+// line-ripple to keep the Keystone borderless-bottom look.
+.mat-mdc-form-field .mdc-line-ripple {
   display: none;
 }
 
-.mat-select-value {
+.mat-mdc-select-value {
   font-family: Georgia, 'Times New Roman', serif;
   font-weight: 700;
   color: #0b2262;
 }
 
-.mat-header-cell {
+// The element+class selectors are required: MDC table structural styles are
+// injected at runtime after global styles and reset cell backgrounds
+// (`background: inherit`), so a plain class selector loses the cascade.
+.mat-mdc-table th.mat-mdc-header-cell {
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 13px;
   font-weight: 700;
@@ -117,7 +123,7 @@ $keystone-theme: mat.define-light-theme(
   height: 48px;
 }
 
-.mat-cell {
+.mat-mdc-table td.mat-mdc-cell {
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 14px;
   color: #143274;
@@ -125,7 +131,7 @@ $keystone-theme: mat.define-light-theme(
   height: 44px;
 }
 
-.mat-raised-button {
+.mat-mdc-raised-button {
   border-radius: 20px;
   height: 40px;
   background: #efb316;
@@ -134,11 +140,11 @@ $keystone-theme: mat.define-light-theme(
 }
 
 .nb-table-density--compact {
-  .mat-header-cell {
+  .mat-mdc-header-cell {
     height: 36px;
   }
 
-  .mat-cell {
+  .mat-mdc-cell {
     height: 28px;
   }
 }

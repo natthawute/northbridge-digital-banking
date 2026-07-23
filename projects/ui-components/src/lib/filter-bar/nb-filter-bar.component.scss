@@ -8,17 +8,16 @@
 .nb-filter-bar__field {
   min-width: 200px;
 
-  input.mat-input-element {
+  input.mat-mdc-input-element {
     height: 34px;
     box-sizing: border-box;
   }
 
-  .mat-select {
+  .mat-mdc-select {
     display: flex;
     align-items: center;
     height: 34px;
-
-    ::ng-deep .mat-select-trigger {
+    ::ng-deep .mat-mdc-select-trigger {
       width: 100%;
     }
   }
